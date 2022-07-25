@@ -3,3 +3,6 @@ venv/
 
 # Python Auto-Generated Files
 __pycache__/
+
+# Visual Studio Code Files
+.vscode/
