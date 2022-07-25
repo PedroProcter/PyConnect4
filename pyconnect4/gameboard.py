@@ -6,6 +6,10 @@ class GameBoard:
 	"""GameBoard Docstring"""
 
 	def __init__(self, board_vertical_size: int, board_horizontal_size: int) -> None:
+
+		self.columns: int = board_horizontal_size
+		self.rows: int = board_vertical_size
+
 		self.gameboard = []
 		
 		for rows in range(board_vertical_size):
