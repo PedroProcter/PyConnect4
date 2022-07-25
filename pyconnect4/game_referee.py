@@ -6,10 +6,10 @@ class GameReferee:
     """GameReferee Docstring"""
 
     @staticmethod
-    def test_horizontal_goal(gameboard: GameBoard, last_token_coordinates: tuple, player_token_id: int):
+    def test_horizontal_goal(gameboard: GameBoard, last_token_coordinate_y: int, player_token_id: int):
         goal_state = f"{player_token_id}{player_token_id}{player_token_id}{player_token_id}"
 
-        horizontal_slots: list = [str(token) for token in gameboard.gameboard[::-1][last_token_coordinates[1]]]
+        horizontal_slots: list = [str(token) for token in gameboard.gameboard[::-1][last_token_coordinate_y]]
 
         if horizontal_slots.count(str(player_token_id)) == 4:
 
@@ -19,10 +19,10 @@ class GameReferee:
                 return player_token_id
 
     @staticmethod
-    def test_vertical_goal(gameboard: GameBoard, last_token_coordinates: tuple, player_token_id: int):
+    def test_vertical_goal(gameboard: GameBoard, last_token_coordinate_x: int, player_token_id: int):
         goal_state = f"{player_token_id}{player_token_id}{player_token_id}{player_token_id}"
 
-        vertical_slots: list = [str(token_row[last_token_coordinates[0]]) for token_row in gameboard.gameboard]
+        vertical_slots: list = [str(token_row[last_token_coordinate_x]) for token_row in gameboard.gameboard]
 
         if vertical_slots.count(str(player_token_id)) == 4:
 
