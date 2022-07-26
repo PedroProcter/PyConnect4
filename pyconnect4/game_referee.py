@@ -6,7 +6,8 @@ class GameReferee:
     """GameReferee Docstring"""
 
     @staticmethod
-    def test_horizontal_goal(gameboard: GameBoard, last_token_coordinate_y: int, player_token_id: int):
+    def test_horizontal_goal(gameboard: GameBoard, last_token_coordinate_y: int, player_token_id: int) -> int | bool:
+        """Tests if the player have connected 4 token in horizontal"""
         goal_state = f"{player_token_id}{player_token_id}{player_token_id}{player_token_id}"
 
         horizontal_slots: list = [str(token) for token in gameboard.gameboard[::-1][last_token_coordinate_y]]
@@ -19,7 +20,8 @@ class GameReferee:
                 return player_token_id
 
     @staticmethod
-    def test_vertical_goal(gameboard: GameBoard, last_token_coordinate_x: int, player_token_id: int):
+    def test_vertical_goal(gameboard: GameBoard, last_token_coordinate_x: int, player_token_id: int) -> int | bool:
+        """Tests if the player have connected 4 token in vertical"""
         goal_state = f"{player_token_id}{player_token_id}{player_token_id}{player_token_id}"
 
         vertical_slots: list = [str(token_row[last_token_coordinate_x]) for token_row in gameboard.gameboard]
@@ -32,7 +34,17 @@ class GameReferee:
                 return player_token_id
 
     @staticmethod
-    def test_goal(gameboard: GameBoard, last_token_coordinates: tuple, player_token_id: int):
+    def test_right_diagonal_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
+        """Tests if the player have connected 4 token in (right) diagonal"""
+        raise NotImplementedError
+
+    @staticmethod
+    def test_left_diagonal_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
+        """Tests if the player have connected 4 token in (left) diagonal"""
+        raise NotImplementedError
+
+    @staticmethod
+    def test_goal(gameboard: GameBoard, last_token_coordinates: tuple, player_token_id: int) -> int | bool:
         """Test if the player have reach the goal (win)"""
 
         if GameReferee.test_horizontal_goal(gameboard, last_token_coordinates, player_token_id) != False:
