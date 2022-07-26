@@ -72,8 +72,8 @@ class TestGameBoard(unittest.TestCase):
 
         #Values returned Tests
 
-        self.assertEqual(testing_target_gameboard.place_token(5, 2), [0, 5], "token position should be (0, 5)")
+        self.assertEqual(testing_target_gameboard.place_token(5, 2), [6, 5], "token position should be (6, 5)")
 
-        self.assertEqual(testing_target_gameboard.place_token(5, 2), [1, 5], "token position should be (1, 5)")
+        self.assertEqual(testing_target_gameboard.place_token(5, 2), [5, 5], "token position should be (5, 5)")
 
-        self.assertNotEqual(testing_target_gameboard.place_token(5, 2), [1, 5], "token position should be (2, 5)")
+        self.assertNotEqual(testing_target_gameboard.place_token(5, 2), [0, 5], "token position should be (4, 5)")
