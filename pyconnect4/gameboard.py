@@ -25,7 +25,7 @@ class GameBoard:
 		for index, row in enumerate(self.gameboard[::-1]):
 			if row[column] == 0:
 				row[column] = player_token_id
-				token_final_coordinates[0] = index
+				token_final_coordinates[0] = abs(index - self.rows) -1
 				break
 		
 		return token_final_coordinates
