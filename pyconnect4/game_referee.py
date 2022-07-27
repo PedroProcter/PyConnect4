@@ -40,20 +40,19 @@ class GameReferee:
     @staticmethod
     def test_right_diagonal_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
         """Tests if the player have connected 4 token in (right) diagonal"""
-        goal_state = f"{player_token_id}{player_token_id}{player_token_id}{player_token_id}"
-        
+       
         last_token_coordinate_y +=1 
         last_token_coordinate_x +=1
         diagonal_Coor = gameboard.gameboard[last_token_coordinate_y][last_token_coordinate_x]
 
-        if(goal_state==diagonal_Coor):
+        if(player_token_id==diagonal_Coor):
             a = 2
             while(a!=0):
-                if(goal_state==diagonal_Coor):
+                if(player_token_id==diagonal_Coor):
                     a-=1
                     last_token_coordinate_y +=1 
                     last_token_coordinate_x +=1
-                    diagonal_Coor = gameboard.gameboard[last_token_coordinate_y,last_token_coordinate_x]
+                    diagonal_Coor = gameboard.gameboard[last_token_coordinate_y][last_token_coordinate_x]
             return player_token_id
             
 
