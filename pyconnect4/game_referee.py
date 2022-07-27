@@ -39,27 +39,25 @@ class GameReferee:
 
     @staticmethod
     def test_right_diagonal_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
-        """Tests if the player have connected 4 token in (right) diagonal"""
-       
-        last_token_coordinate_y +=1 
-        last_token_coordinate_x +=1
-        diagonal_Coor = gameboard.gameboard[last_token_coordinate_y][last_token_coordinate_x]
+        """Tests if the player have connected 4 token in (right) diagonal"""       
+        if(last_token_coordinate_y<=4 and last_token_coordinate_x<=3 ):
+             last_token_coordinate_y +=1
+             last_token_coordinate_x +=1
+             diagonal_Coor = gameboard.gameboard[last_token_coordinate_x][last_token_coordinate_x]
 
-        if(player_token_id==diagonal_Coor):
-            a = 2
-            while(a!=0):
-                if(player_token_id==diagonal_Coor):
-                    a-=1
-                    last_token_coordinate_y +=1 
-                    last_token_coordinate_x +=1
-                    diagonal_Coor = gameboard.gameboard[last_token_coordinate_y][last_token_coordinate_x]
-            return player_token_id
-            
+             if(player_token_id==diagonal_Coor):
 
-       
+                 a = 2
+                 while(a!=0):
 
+                      if(player_token_id==diagonal_Coor):
+                         a-=1
+                         last_token_coordinate_y +=1 
+                         last_token_coordinate_x +=1
+                         diagonal_Coor = gameboard.gameboard[last_token_coordinate_y][last_token_coordinate_x]
+             return player_token_id
 
-        raise NotImplementedError
+        ##raise NotImplementedError
 
     @staticmethod
     def test_left_diagonal_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
