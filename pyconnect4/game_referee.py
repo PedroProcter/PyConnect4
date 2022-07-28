@@ -106,13 +106,19 @@ class GameReferee:
         return False     
 
     @staticmethod
-    def test_goal(gameboard: GameBoard, last_token_coordinates: tuple, player_token_id: int) -> int | bool:
+    def test_goal(gameboard: GameBoard, player_token_id: int, last_token_coordinate_x: int, last_token_coordinate_y: int) -> int | bool:
         """Test if the player have reach the goal (win)"""
 
-        if GameReferee.test_horizontal_goal(gameboard, last_token_coordinates, player_token_id) != False:
+        if GameReferee.test_horizontal_goal(gameboard, last_token_coordinate_y, player_token_id) != False:
             return player_token_id
 
-        if GameReferee.test_vertical_goal(gameboard, last_token_coordinates, player_token_id) != False:
+        elif GameReferee.test_vertical_goal(gameboard, last_token_coordinate_x, player_token_id) != False:
+            return player_token_id
+
+        elif GameReferee.test_right_diagonal_goal(gameboard, player_token_id, last_token_coordinate_x, last_token_coordinate_y) != False:
+            return player_token_id
+
+        elif GameReferee.test_left_diagonal_goal(gameboard, player_token_id, last_token_coordinate_x, last_token_coordinate_y) != False:
             return player_token_id
         
         return False
