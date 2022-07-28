@@ -115,6 +115,32 @@ class TestGameReferee(unittest.TestCase):
 
         testing_target_gameboard = GameBoard(7, 6)
 
+        testing_target_gameboard.place_token(0, 2)
+        testing_target_gameboard.place_token(0, 2)
+        testing_target_gameboard.place_token(0, 1)
+
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 1)
+
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 1)
+        
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        output = testing_target_gameboard.place_token(3, 1)
+
+        self.assertEqual(GameReferee.test_right_diagonal_goal(testing_target_gameboard, 1, output[1], output[0]), 1, "Player 1 should have win with right diagonal connect")
+
+        testing_target_gameboard = GameBoard(7, 6)
+
         testing_target_gameboard.place_token(4, 1)
         testing_target_gameboard.place_token(4, 1)
         testing_target_gameboard.place_token(4, 1)
@@ -212,3 +238,67 @@ class TestGameReferee(unittest.TestCase):
 
         self.assertNotEqual(GameReferee.test_left_diagonal_goal(testing_target_gameboard, 2, output[1], output[0]), 2, "Player 1 shouldn't have win with left diagonal connect")
 
+    def test_test_goal(self):
+        """Tests the test_goal method of GameReferee"""
+
+        # left diagonal
+
+        testing_target_gameboard = GameBoard(7, 6)
+
+        testing_target_gameboard.place_token(4, 1)
+
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 1)
+
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 1)
+        
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 2)
+        output = testing_target_gameboard.place_token(1, 1)
+
+        self.assertEqual(GameReferee.test_goal(testing_target_gameboard, 1, output[1], output[0]), 1, "Player 1 should have win with left diagonal connect")
+
+        # right diagonal
+
+        testing_target_gameboard = GameBoard(7, 6)
+
+        testing_target_gameboard.place_token(0, 1)
+
+        testing_target_gameboard.place_token(1, 2)
+        testing_target_gameboard.place_token(1, 1)
+
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 2)
+        testing_target_gameboard.place_token(2, 1)
+        
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        testing_target_gameboard.place_token(3, 2)
+        output = testing_target_gameboard.place_token(3, 1)
+
+        self.assertEqual(GameReferee.test_goal(testing_target_gameboard, 1, output[1], output[0]), 1, "Player 1 should have win with right diagonal connect")
+
+        # horizontal
+
+        testing_target_gameboard = GameBoard(7, 6)
+
+        testing_target_gameboard.place_token(0, 1)
+        testing_target_gameboard.place_token(1, 1)
+        testing_target_gameboard.place_token(2, 1)
+        output = testing_target_gameboard.place_token(3, 1)
+
+        self.assertEqual(GameReferee.test_goal(testing_target_gameboard, 1, output[1], output[0]), 1, "Player 1 should have win with horizontal connect")
+
+        # vertical
+
+        testing_target_gameboard = GameBoard(7, 6)
+
+        testing_target_gameboard.place_token(0, 1)
+        testing_target_gameboard.place_token(0, 1)
+        testing_target_gameboard.place_token(0, 1)
+        output = testing_target_gameboard.place_token(0, 1)
+
+        self.assertEqual(GameReferee.test_goal(testing_target_gameboard, 1, output[1], output[0]), 1, "Player 1 should have win with vertical connect")
