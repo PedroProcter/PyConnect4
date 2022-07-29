@@ -61,6 +61,7 @@ class Machine(Player):
         played_machine= movement[1] 
         return movement
         
+        
             
 
 
