@@ -58,6 +58,7 @@ class Machine(Player):
         else:
             movement=min(movement)
             return movement[0]
+            s
 
 
 
