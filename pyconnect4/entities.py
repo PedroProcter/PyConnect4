@@ -25,17 +25,21 @@ class User(Player):
 class Machine(Player):
 
     def get_next_move(self, gameboard: GameBoard) -> int:
-        if User.get_next_move()==played_machine:           
-            movement = Machine.compute_minimax(gameboard,self.ID)
-            gameboard[played_machine]=self.ID
-            return gameboard
+        if User.get_next_move()==played_machine: 
+            last_token_coordinates   =  gameboard.columns,gameboard.rows
+            compro=GameReferee.test_goal(gameboard,last_token_coordinates,self.ID)
+            if GameReferee.test_goal(gameboard,last_token_coordinates,self.ID)==False:
+                movement = Machine.compute_minimax(gameboard,self.ID)
+                gameboard[played_machine]=self.ID
+                return gameboard
+            return compro 
 
         raise NotImplementedError
 
-    def compute_minimax(gameboard: GameBoard, player_token_id: int): #quite el int 
+    def compute_minimax(gameboard: GameBoard,last_token_coordinates:tuple, player_token_id: int): #quite el int 
         global played_machine
         ##refisar
-        if GameReferee.test_goal(gameboard,player_token_id):
+        if GameReferee.test_goal(gameboard,last_token_coordinates,player_token_id):
             return(gameboard,0)
         #POSIBLES JUGADAS 
         movement = []
@@ -53,13 +57,14 @@ class Machine(Player):
             if gameboard[move]==NULL:
                 gameboardaux = gameboard
                 gameboardaux.place_token[move] = player_token_id
-                punctuation= Machine.compute_minimax(gameboardaux,player_token_id)#el menos unos estas porque no se cual es el aide del pc
+                punctuation= Machine.compute_minimax(gameboardaux,last_token_coordinates,player_token_id)#el menos unos estas porque no se cual es el aide del pc
                 movement.append([punctuation,move]) 
         
         #quite la condicional porque no tenia logica alguna
         movement = max(movement)
         played_machine= movement[1] 
         return movement
+        
         
         
             
