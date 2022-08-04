@@ -56,7 +56,7 @@ class Machine(Player):
         for move in range (0,len(last_token_coordinates)):
             if gameboard[move]==NULL:
                 gameboardaux = gameboard
-                gameboardaux.place_token[move] = player_token_id
+                gameboardaux.place_token[last_token_coordinates(move)] = player_token_id
                 punctuation= Machine.compute_minimax(gameboardaux,last_token_coordinates,player_token_id)#el menos unos estas porque no se cual es el aide del pc
                 movement.append([punctuation,move]) 
         
