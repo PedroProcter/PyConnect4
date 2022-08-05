@@ -90,7 +90,7 @@ class GameBoardGUI(GameBoardUI):
         SCREEN_SIZE = screen.get_size()
 
         while True:
-            MENU_TEXT = pygame.font.Font(DEFAULT_FONT, 24).render("Press 1 to 7 to choose a column", True, TEXT_COLOR)
+            MENU_TEXT = pygame.font.Font(DEFAULT_FONT, 24).render("Press 0 to 6 to choose a column", True, TEXT_COLOR)
             ALIGN_MENU_CENTER_X = (SCREEN_SIZE[0] / 2) - (MENU_TEXT.get_size()[0] / 2)
             screen.blit(MENU_TEXT, (ALIGN_MENU_CENTER_X, 25))
 
