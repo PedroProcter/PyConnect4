@@ -1,9 +1,6 @@
 from abc import ABC, abstractmethod
-from asyncio.windows_events import NULL
 from dataclasses import dataclass
 from .game_referee import GameReferee
-
-from pyparsing import oneOf
 
 from .gameboard import GameBoard
 
@@ -54,7 +51,7 @@ class Machine(Player):
                 gameboard.rows[y]
 
         for move in range (0,len(last_token_coordinates)):
-            if gameboard[move]==NULL:
+            if gameboard[move]==None:
                 gameboardaux = gameboard
                 gameboardaux.place_token[last_token_coordinates(move)] = player_token_id
                 punctuation= Machine.compute_minimax(gameboardaux,last_token_coordinates,player_token_id)#el menos unos estas porque no se cual es el aide del pc
